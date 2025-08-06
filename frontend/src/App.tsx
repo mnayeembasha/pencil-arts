@@ -134,7 +134,7 @@ const App = () => {
 
           <div>
             <a href='/login'>
-            <button className="bg-blue-500 text-white px-6 py-2 rounded-4xl cursor-pointer">
+            <button className="bg-blue-500 text-white px-6 py-2 rounded-3xl cursor-pointer">
               Login
             </button>
             </a>
