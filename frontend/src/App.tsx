@@ -82,6 +82,8 @@ import LandingPage from './components/LandingPage';
 import { useEffect, useState } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import axios from 'axios';
+import Gallery from './components/Gallery';
+import RakhiSpecial from './components/RakhiSpecial';
 
 const App = () => {
   const [user, setUser] = useState<any>(null);
@@ -123,8 +125,9 @@ const App = () => {
         {user && (
           <div className='flex gap-x-2 '>
             {/* <span className="mr-4">Hello, {user.name}</span> */}
-            <a href="/orders" className='flex justify-center items-center'><div className=' font-bold cursor-pointer'><ShoppingCart /></div></a>
-            <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded cursor-pointer">
+
+            <a href={user.role==="admin"?"/admin/orders":"/orders"} className='flex justify-center items-center'><div className=' font-bold cursor-pointer'><ShoppingCart /></div></a>
+            <button onClick={handleLogout} className="bg-red-500 text-white px-6 py-2 rounded-3xl cursor-pointer">
               Logout
             </button>
           </div>
@@ -146,6 +149,9 @@ const App = () => {
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login setUser={setUser} />} />
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register setUser={setUser} />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/rakhi-special" element={<RakhiSpecial />} />
+        {/* <Route path="/place-order" element={ <OrderForm /> } /> */}
         <Route path="/place-order" element={user ? <OrderForm /> : <Navigate to="/login" />} />
         <Route path="/orders" element={user ? <UserOrders user={user}/> : <Navigate to="/login" />} />
         <Route path="/order-status" element={user ? <OrderStatus /> : <Navigate to="/login" />} />
